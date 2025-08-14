@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>For My Love Nattie 💖</title>
+<style>
+  body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+  }
+  header { padding: 60px 20px; }
+  h1 { font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 10px; }
+  h2 { font-weight: normal; font-size: clamp(1rem, 3.5vw, 1.2rem); color: #555; }
+  section { padding: 40px 20px; max-width: 800px; margin: auto; }
+  .card {
+    background: white; border-radius: 15px; padding: 20px; margin: 20px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  footer { padding: 20px; font-size: 0.9rem; color: #777; }
+  button {
+    background: #ff4f81; color: white; border: none; padding: 10px 20px;
+    border-radius: 25px; cursor: pointer; font-size: 1rem;
+    transition: background 0.3s ease;
+  }
+  button:hover { background: #e04373; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>For My Love Nattie 💖</h1>
+  <h2>No matter the distance, you’re always close to my heart.</h2>
+</header>
+
+<section>
+  <div class="card">
+    <h3>Daily Gift 🎁</h3>
+    <p>Click the button below to open your gift, Nattie 💖</p>
+    <button id="openGiftBtn" type="button">Open Gift</button>
+  </div>
+
+  <div class="card">
+    <h3>Reasons I Love You</h3>
+    <ul id="reasons" style="list-style:none; padding:0; margin:0;"></ul>
+  </div>
+</section>
+
+<footer>
+  Made with ❤️ by Sarib — For Nattie 💖
+</footer>
+
+<script>
+  const gifts = [
+    "A warm hug from me, sent across the miles 🤗",
+    "A kiss on your forehead to make your day better 😘",
+    "A little poem: 'Even oceans apart, my heart finds you.' 💌",
+    "A promise: I’ll always be yours, no matter the distance 💖",
+    "A daydream of us laughing together under the stars 🌙"
+  ];
+
+  function pickGift() {
+    return gifts[Math.floor(Math.random() * gifts.length)];
+  }
+
+  function showGiftInNewWindow() {
+    const giftMsg = pickGift();
+    const giftWindow = window.open("", "GiftWindow", "width=500,height=400");
+
+    giftWindow.document.write(`
+      <html>
+      <head>
+        <title>Your Gift 💝</title>
+        <style>
+          body {
+            background: linear-gradient(to bottom right, #ffdee9, #b5fffc);
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            padding: 50px;
+            color: #333;
+          }
+          h1 { font-size: 1.5rem; }
+          p { font-size: 1.2rem; margin-top: 20px; min-height: 60px; }
+          audio { margin-top: 30px; }
+        </style>
+      </head>
+      <body>
+        <h1>💝 From Sarib to Nattie 💝</h1>
+        <p id="typing"></p>
+        <audio autoplay loop>
+          <source src="https://cdn.pixabay.com/audio/2021/09/13/audio_6b96e3170f.mp3" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <script>
+          const text = ${JSON.stringify(giftMsg)};
+          let i = 0;
+          function typeWriter() {
+            if (i < text.length) {
+              document.getElementById("typing").innerHTML += text.charAt(i);
+              i++;
+              setTimeout(typeWriter, 70);
+            }
+          }
+          typeWriter();
+        <\/script>
+      </body>
+      </html>
+    `);
+
+    giftWindow.document.close();
+  }
+
+  function initReasons() {
+    const reasons = [
+      "Your kind heart 💖",
+      "The way you make me smile 😊",
+      "Your beautiful mind 🧠",
+      "How you support me in everything 🙌",
+      "That you’re Nattie — and that’s enough 🌟"
+    ];
+    const list = document.getElementById("reasons");
+    reasons.forEach(reason => {
+      const li = document.createElement("li");
+      li.textContent = reason;
+      li.style.padding = "6px 0";
+      list.appendChild(li);
+    });
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("openGiftBtn").addEventListener("click", showGiftInNewWindow);
+    initReasons();
+  });
+</script>
+
+</body>
+</html>
